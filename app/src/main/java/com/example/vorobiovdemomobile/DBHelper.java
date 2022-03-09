@@ -32,7 +32,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 + " integer primary key," + KEY_Title + " text," + KEY_ProductTypeId + " integer," + KEY_ArticleNumber +" integer,"
                 + KEY_Image + " text," + KEY_ProductionPersonCount + " integer," + KEY_ProductionWorkshopNumber + " integer,"+ KEY_MinCostForAgent + " integer"+ ")");
 
-        db.execSQL("insert into " + TABLE_PRODUCT + "(" + "KEY_ID" + ","          ")");
+        db.execSQL("insert into " + TABLE_PRODUCT + "(" + KEY_ID + KEY_Title  + KEY_ProductTypeId
+                + KEY_ArticleNumber + KEY_Image + KEY_ProductionPersonCount + KEY_ProductionWorkshopNumber + KEY_MinCostForAgent + ")" + "values" );
     }
 
     @Override

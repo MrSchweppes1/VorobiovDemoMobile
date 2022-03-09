@@ -12,7 +12,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:id="@+id/LL">
 
         <ImageView
             android:layout_width="200px"
@@ -33,7 +34,17 @@
             android:text="Намордник" />
 
         </LinearLayout>
-
     </LinearLayout>
+
+    <TableLayout
+        android:id="@+id/TabLay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LL">
+
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

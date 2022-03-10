@@ -1,5 +1,7 @@
 package com.example.vorobiovdemomobile;
 
+import static com.example.vorobiovdemomobile.DBHelper.TABLE_PRODUCT;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -17,14 +19,17 @@ import android.os.Bundle;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.sql.Array;
 import java.sql.Blob;
 import java.sql.CallableStatement;
 import java.sql.Clob;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
 import java.sql.NClob;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLClientInfoException;
 import java.sql.SQLException;
 import java.sql.SQLWarning;
@@ -67,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
                     is.close();
                     text = new String(buffer);
 
-
+                    Connection connection = DriverManager.getConnection(TABLE_PRODUCT, null,null);
+                    Statement statement = connection.createStatement();
 
                     while((text = buffer.toString()) != null)
                     {
@@ -84,10 +90,9 @@ public class MainActivity extends AppCompatActivity {
                         String insertString = "insert into product(" + KEY_ID + ", " + KEY_Title + ", " +
                                 KEY_ProductTypeId + ", " + KEY_ArticleNumber + ", " + KEY_Image +", " +
                                 KEY_ProductionPersonCount +", " + KEY_ProductionWorkshopNumber +", " + KEY_MinCostForAgent +") values (?,?,?,?,?)";
-                        Cursor cursor = database.query(DBHelper.TABLE_PRODUCT,null,null,null,null,null,null);
-
+                        ResultSet rs = statement.executeQuery(insertString);
                     }
-                }catch (IOException ex){
+                }catch (IOException | SQLException ex){
                     ex.printStackTrace();
                 }
                 tv_text.setText(text);
@@ -100,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void UpdateTable() {
 
-        Cursor cursor = database.query(DBHelper.TABLE_PRODUCT, null, null, null, null, null, null);
+        Cursor cursor = database.query(TABLE_PRODUCT, null, null, null, null, null, null);
             int idIndex = cursor.getColumnIndex(DBHelper.KEY_ID);
             int TitleIndex = cursor.getColumnIndex(DBHelper.KEY_Title);
             int PTIndex = cursor.getColumnIndex(DBHelper.KEY_ProductTypeId);

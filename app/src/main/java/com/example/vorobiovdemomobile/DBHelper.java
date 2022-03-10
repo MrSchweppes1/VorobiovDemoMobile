@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "productDb";
     public static final String TABLE_PRODUCT = "product";
 
@@ -31,9 +31,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("create table " + TABLE_PRODUCT + "(" + KEY_ID
                 + " integer primary key," + KEY_Title + " text," + KEY_ProductTypeId + " integer," + KEY_ArticleNumber +" integer,"
                 + KEY_Image + " text," + KEY_ProductionPersonCount + " integer," + KEY_ProductionWorkshopNumber + " integer,"+ KEY_MinCostForAgent + " integer"+ ")");
-
-        db.execSQL("insert into " + TABLE_PRODUCT + "(" + KEY_ID + KEY_Title  + KEY_ProductTypeId
-                + KEY_ArticleNumber + KEY_Image + KEY_ProductionPersonCount + KEY_ProductionWorkshopNumber + KEY_MinCostForAgent + ")" + "values" );
     }
 
     @Override
